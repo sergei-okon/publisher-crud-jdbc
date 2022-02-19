@@ -1,0 +1,102 @@
+[
+  {
+    "id": 11,
+    "firstName": "Dima",
+    "lastName": "Kotik",
+    "posts": [
+      {
+        "id": 5,
+        "content": "Bitcoin rises for two weeks in a row",
+        "created": 1643629168529,
+        "updated": 1643629168529,
+        "labels": [
+          {
+            "id": 10,
+            "name": "Bitcoin"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "firstName": "Svitlana",
+    "lastName": "Loginova",
+    "posts": [
+      {
+        "id": 1,
+        "content": "Black cash",
+        "created": 1643238752046,
+        "updated": 1643629025405,
+        "labels": [
+          {
+            "id": 2,
+            "name": "Cash"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "content": "Java is the most popular language",
+        "created": 1643477312235,
+        "updated": 1643477312235,
+        "labels": [
+          {
+            "id": 9,
+            "name": "Java"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "firstName": "Sergei",
+    "lastName": "Zuravlev",
+    "posts": [
+      {
+        "id": 1,
+        "content": "sss",
+        "created": 1643238752046,
+        "updated": 1643239990336,
+        "labels": [
+          {
+            "id": 2,
+            "name": "Cash"
+          },
+          {
+            "id": 5,
+            "name": "TRAMP"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "firstName": "Oleg",
+    "lastName": "Voronov",
+    "posts": [
+      {
+        "id": 6,
+        "content": "US inflation 6 percent per year",
+        "created": 1643629250312,
+        "updated": 1643629250312,
+        "labels": [
+          {
+            "id": 2,
+            "name": "Cash"
+          },
+          {
+            "id": 4,
+            "name": "USA"
+          },
+          {
+            "id": 5,
+            "name": "TRAMP"
+          }
+        ]
+      }
+    ]
+  }
+]
