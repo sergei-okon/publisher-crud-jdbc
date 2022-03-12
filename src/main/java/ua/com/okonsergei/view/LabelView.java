@@ -26,18 +26,22 @@ public class LabelView extends BaseView {
     void edit() {
         System.out.println("Editing label... Input id ");
         Long id;
+
         while (!scanner.hasNextLong()) {
             System.out.println("That not correct id");
             scanner.next();
         }
+
         id = scanner.nextLong();
-        if (labelController.findById(id) == null) {
+
+        if (labelController.findById(id).getId() == null) {
             System.out.println("Label with id " + id + "not found");
             return;
         }
-
         System.out.println("Input Label new name");
-        String name = scanner.next();
+        scanner.nextLine();
+        String name = scanner.nextLine();
+
         Label updateLabel = new Label();
         updateLabel.setId(id);
         updateLabel.setName(name);

@@ -1,14 +1,17 @@
 package ua.com.okonsergei.service;
 
-import ua.com.okonsergei.model.Label;
 import ua.com.okonsergei.repository.LabelRepository;
-import ua.com.okonsergei.repository.json.JsonLabelRepositoryImpl;
+import ua.com.okonsergei.repository.db.LabelRepositoryImpl;
+import ua.com.okonsergei.model.Label;
 
 import java.util.List;
 
 public class LabelService {
 
-    private final LabelRepository labelRepository = new JsonLabelRepositoryImpl();
+    private final LabelRepository labelRepository = new LabelRepositoryImpl();
+
+    public LabelService() {
+    }
 
     public List<Label> findAll() {
         return labelRepository.findAll();

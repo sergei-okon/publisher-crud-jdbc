@@ -40,10 +40,10 @@ public class PostView extends BaseView {
         }
 
         post.setContent(content);
-        post.setCreated(ConverterLocalDateTimeToLong.convertLocalDateTimeToLong(LocalDateTime.now()));
-        post.setUpdated(ConverterLocalDateTimeToLong.convertLocalDateTimeToLong(LocalDateTime.now()));
+        post.setCreated(LocalDateTime.now());
+        post.setUpdated(LocalDateTime.now());
         post.setLabels(labels);
-
+        System.out.println("POST FROM MENU +" + post);
         postController.save(post);
         System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
@@ -52,13 +52,15 @@ public class PostView extends BaseView {
     void edit() {
         System.out.println("Editing POST... Input id ");
         Long id;
+
         while (!scanner.hasNextLong()) {
             System.out.println("That not correct id");
             scanner.next();
         }
+
         id = scanner.nextLong();
-        if (postController.findById(id) == null) {
-            System.out.println("Post with id " + id + "not found");
+        if (postController.findById(id).getId() == null) {
+            System.out.println("Post with id " + id + " not found");
             return;
         }
 
@@ -79,7 +81,7 @@ public class PostView extends BaseView {
         Post updatePost = new Post();
         updatePost.setId(id);
         updatePost.setContent(content);
-        updatePost.setUpdated(ConverterLocalDateTimeToLong.convertLocalDateTimeToLong(LocalDateTime.now()));
+        updatePost.setUpdated(LocalDateTime.now());
         updatePost.setLabels(labels);
 
         postController.update(id, updatePost);

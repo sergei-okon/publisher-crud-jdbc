@@ -1,21 +1,27 @@
 package ua.com.okonsergei.model;
 
-import ua.com.okonsergei.utils.ConverterLocalDateTimeToLong;
-
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class Post {
 
     private Long id;
     private String content;
-    private Long created;
-    private Long updated;
+    private LocalDateTime created;
+    private LocalDateTime updated;
     private List<Label> labels;
+
+    public Post(Long id, String content, LocalDateTime created, LocalDateTime updated) {
+        this.id = id;
+        this.content = content;
+        this.created = created;
+        this.updated = updated;
+    }
 
     public Post() {
     }
 
-    public Post(Long id, String content, Long created, Long updated, List<Label> labels) {
+    public Post(Long id, String content, LocalDateTime created, LocalDateTime updated, List<Label> labels) {
         this.id = id;
         this.content = content;
         this.created = created;
@@ -39,19 +45,19 @@ public class Post {
         this.content = content;
     }
 
-    public Long getCreated() {
+    public LocalDateTime getCreated() {
         return created;
     }
 
-    public void setCreated(Long created) {
+    public void setCreated(LocalDateTime created) {
         this.created = created;
     }
 
-    public Long getUpdated() {
+    public LocalDateTime getUpdated() {
         return updated;
     }
 
-    public void setUpdated(Long updated) {
+    public void setUpdated(LocalDateTime updated) {
         this.updated = updated;
     }
 
@@ -68,8 +74,8 @@ public class Post {
         return "Post{" +
                 "id=" + id +
                 ", content='" + content + '\'' +
-                ", created=" + ConverterLocalDateTimeToLong.convertLongToLocalDateTime(created) +
-                ", updated=" + ConverterLocalDateTimeToLong.convertLongToLocalDateTime(updated) +
+                ", created=" + created +
+                ", updated=" + updated +
                 ", labels=" + labels +
                 '}';
     }
