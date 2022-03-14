@@ -5,7 +5,6 @@ import ua.com.okonsergei.controller.PostController;
 import ua.com.okonsergei.model.Label;
 import ua.com.okonsergei.model.Message;
 import ua.com.okonsergei.model.Post;
-import ua.com.okonsergei.utils.ConverterLocalDateTimeToLong;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -57,8 +56,8 @@ public class PostView extends BaseView {
             System.out.println("That not correct id");
             scanner.next();
         }
-
         id = scanner.nextLong();
+
         if (postController.findById(id).getId() == null) {
             System.out.println("Post with id " + id + " not found");
             return;
@@ -73,10 +72,10 @@ public class PostView extends BaseView {
 
         List<Label> labels = new ArrayList<>();
 
-        String[] postArray = label.split(",");
+        String[] labelsArray = label.split(",");
 
-        for (String s : postArray) {
-            labels.add(labelController.findById(Long.valueOf(s)));
+        for (String labelId : labelsArray) {
+            labels.add(labelController.findById(Long.valueOf(labelId)));
         }
         Post updatePost = new Post();
         updatePost.setId(id);
@@ -90,10 +89,14 @@ public class PostView extends BaseView {
 
     @Override
     void delete() {
-        System.out.println("Deleting POST. Input Id");
-        Long id = Long.valueOf(scanner.next());
+        System.out.println("Deleting POST. Input Id ...");
+        Long id;
+        while (!scanner.hasNextLong()) {
+            System.out.println("That not correct id");
+            scanner.next();
+        }
+        id = Long.valueOf(scanner.next());
         postController.deleteById(id);
-        System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
     @Override
@@ -104,7 +107,6 @@ public class PostView extends BaseView {
 
     public void showSecondMenu() {
         System.out.println("Post control menu. What do you want to do?");
-        System.out.println(Message.SECOND_MENU.getMessage());
         super.showSecondMenu();
     }
 }

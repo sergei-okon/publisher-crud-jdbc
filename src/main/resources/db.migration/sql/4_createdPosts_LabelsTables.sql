@@ -1,7 +1,3 @@
--- Table: public.posts_labels
-
--- DROP TABLE IF EXISTS public.posts_labels;
-
 CREATE TABLE IF NOT EXISTS public.posts_labels
 (
     id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),

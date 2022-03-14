@@ -16,7 +16,7 @@ public class LabelView extends BaseView {
         Label label = new Label();
 
         System.out.println("Input Label name");
-        String name = scanner.nextLine();
+        String name = scanner.next();
         label.setName(name);
         labelController.save(label);
         System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
@@ -33,7 +33,6 @@ public class LabelView extends BaseView {
         }
 
         id = scanner.nextLong();
-
         if (labelController.findById(id).getId() == null) {
             System.out.println("Label with id " + id + "not found");
             return;
@@ -52,10 +51,9 @@ public class LabelView extends BaseView {
 
     @Override
     void delete() {
-        System.out.println("Deleting Label. Input Id");
+        System.out.println("Deleting Label. Input Id ...");
         Long id = Long.valueOf(scanner.next());
         labelController.deleteById(id);
-        System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
     @Override
@@ -66,7 +64,6 @@ public class LabelView extends BaseView {
 
     public void showSecondMenu() {
         System.out.println("LABEL control menu. What do you want to do?");
-        System.out.println(Message.SECOND_MENU.getMessage());
         super.showSecondMenu();
     }
 }

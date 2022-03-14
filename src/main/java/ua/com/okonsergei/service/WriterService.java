@@ -2,13 +2,13 @@ package ua.com.okonsergei.service;
 
 import ua.com.okonsergei.model.Writer;
 import ua.com.okonsergei.repository.WriterRepository;
-import ua.com.okonsergei.repository.json.JsonWriterRepositoryImpl;
+import ua.com.okonsergei.repository.db.WriterRepositoryImpl;
 
 import java.util.List;
 
 public class WriterService {
 
-    private final WriterRepository writerRepository = new JsonWriterRepositoryImpl();
+    private final WriterRepository writerRepository = new WriterRepositoryImpl();
 
     public Writer findById(Long id) {
         return writerRepository.findById(id);

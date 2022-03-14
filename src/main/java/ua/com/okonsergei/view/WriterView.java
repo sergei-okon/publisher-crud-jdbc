@@ -55,8 +55,9 @@ public class WriterView extends BaseView {
             System.out.println("That not correct id");
             scanner.next();
         }
+
         id = scanner.nextLong();
-        if (writerController.findById(id) == null) {
+        if (writerController.findById(id).getId() == null) {
             System.out.println("Writer with id " + id + "not found");
             return;
         }
@@ -89,10 +90,14 @@ public class WriterView extends BaseView {
 
     @Override
     void delete() {
-        System.out.println("Deleting Writer. Input Id");
-        Long id = Long.valueOf(scanner.next());
+        System.out.println("Deleting Writer. Input Id ...");
+        Long id;
+        while (!scanner.hasNextLong()) {
+            System.out.println("That not correct id");
+            scanner.next();
+        }
+        id = Long.valueOf(scanner.next());
         writerController.deleteById(id);
-        System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
     @Override

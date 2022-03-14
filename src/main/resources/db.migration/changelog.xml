@@ -5,12 +5,14 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <include file="/db.migration/changeset/1_20.02.22--create-label.xml"/>
-    <include file="db.migration/changeset/2_20.02.22--insert-data-to-label-table.xml"/>
-    <include file="db.migration/changeset/3_21.02.22--createPostsTable.xml"/>
-    <include file="db.migration/changeset/4_21.02.22--createPosts_LabelsTables.xml"/>
-
-    <!--    <include file="/db.migration/changeset/21.02.2022&#45;&#45;addAutoIncrement-tableLabel.xml"/>-->
-
-
+    <include file="db.migration/changeSet/1_20.02.22--create-label.xml"/>
+    <include file="db.migration/changeSet/2_20.02.22--insert-data-to-label-table.xml"/>
+    <include file="db.migration/changeSet/3_21.02.22--createPostsTable.xml"/>
+    <include file="db.migration/changeSet/4_21.02.22--createPosts_LabelsTables.xml"/>
+    <include file="db.migration/changeSet/5_21.02.22--insertDataToPostsTable.xml"/>
+    <include file="db.migration/changeSet/6_21.02.22--insertDataToPosts_LabelsTables.xml"/>
+    <include file="db.migration/changeSet/7_09.03.22--createWritersTable.xml"/>
+    <include file="db.migration/changeSet/8_09.03.22--insertDataToWritersTable.xml"/>
+    <include file="db.migration/changeSet/9_09.03.22--createWriters_PostsTable.xml"/>
+    <include file="db.migration/changeSet/10_09.03.22--insertDataToWriters_PostsTable.xml"/>
 </databaseChangeLog>

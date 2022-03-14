@@ -19,15 +19,18 @@ public class PostRepositoryImpl implements PostRepository {
         List<Post> posts = new ArrayList<>();
 
         try (Connection connection = DataSource.getConnection();
-             PreparedStatement preparedStatement = connection
+             PreparedStatement preparedStatementPosts = connection
                      .prepareStatement("SELECT posts.post_id, content,created,updated FROM posts",
                              ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
              PreparedStatement preparedStatementLabels = connection
                      .prepareStatement("SELECT  posts_labels.post_id, posts_labels.label_id, labels.name " +
                              "FROM labels JOIN posts_labels ON posts_labels.label_id=labels.label_id")) {
 
-            ResultSet resultSetPosts = preparedStatement.executeQuery();
-            posts = convertResultSetToPosts(resultSetPosts);
+            ResultSet resultSetPosts = preparedStatementPosts.executeQuery();
+
+            while (resultSetPosts.next()) {
+                posts.add(convertResultSetToPost(resultSetPosts));
+            }
 
             ResultSet resultSetLabels = preparedStatementLabels.executeQuery();
 
@@ -40,9 +43,7 @@ public class PostRepositoryImpl implements PostRepository {
                 if (postIdLabelIds.containsKey(id))
                     labels = postIdLabelIds.get(id);
 
-                Label label = new Label();
-                label.setId(resultSetLabels.getLong("label_id"));
-                label.setName(resultSetLabels.getString("name"));
+                Label label = labelRepository.convertResultSetToLabel(resultSetLabels);
                 labels.add(label);
 
                 postIdLabelIds.put(id, labels);
@@ -76,14 +77,13 @@ public class PostRepositoryImpl implements PostRepository {
             ResultSet resultSetLabel = preparedStatementLabel.executeQuery();
 
             while (resultSetPost.next()) {
-                post.setId(resultSetPost.getLong("post_id"));
-                post.setContent(resultSetPost.getString("content"));
-                post.setCreated(resultSetPost.getTimestamp("created").toLocalDateTime());
-                post.setUpdated(resultSetPost.getTimestamp("updated").toLocalDateTime());
+                post = convertResultSetToPost(resultSetPost);
             }
 
-            List<Label> labels = labelRepository.convertResultSetToLabels(resultSetLabel);
-
+            List<Label> labels = new ArrayList<>();
+            while (resultSetLabel.next()) {
+                labels.add(labelRepository.convertResultSetToLabel(resultSetLabel));
+            }
             post.setLabels(labels);
 
         } catch (SQLException e) {
@@ -120,7 +120,7 @@ public class PostRepositoryImpl implements PostRepository {
 
     @Override
     public void deleteById(Long id) {
-        if (findById(id) == null) {
+        if (findById(id).getId() == null) {
             System.out.println("Unable to delete post from database. Post with id " + id + " not found");
         } else {
             try (Connection connection = DataSource.getConnection();
@@ -161,18 +161,14 @@ public class PostRepositoryImpl implements PostRepository {
         insertLabelsToTablePostsLabels(id, post);
     }
 
-    private List<Post> convertResultSetToPosts(ResultSet resultSet) throws SQLException {
-        List<Post> posts = new ArrayList<>();
+    public Post convertResultSetToPost(ResultSet resultSet) throws SQLException {
+        Post post = new Post();
+        post.setId(resultSet.getLong("post_id"));
+        post.setContent(resultSet.getString("content"));
+        post.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+        post.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
 
-        while (resultSet.next()) {
-            Post post = new Post();
-            post.setId(resultSet.getLong("post_id"));
-            post.setContent(resultSet.getString("content"));
-            post.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
-            post.setUpdated(resultSet.getTimestamp("updated").toLocalDateTime());
-            posts.add(post);
-        }
-        return posts;
+        return post;
     }
 
     private void insertLabelsToTablePostsLabels(Long id, Post post) {

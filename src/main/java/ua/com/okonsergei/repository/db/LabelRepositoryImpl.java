@@ -21,8 +21,9 @@ public class LabelRepositoryImpl implements LabelRepository {
                      .prepareStatement("SELECT label_id,name FROM labels")) {
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            labels = convertResultSetToLabels(resultSet);
-
+            while (resultSet.next()) {
+                labels.add(convertResultSetToLabel(resultSet));
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -41,10 +42,8 @@ public class LabelRepositoryImpl implements LabelRepository {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                label.setId(resultSet.getLong("label_id"));
-                label.setName(resultSet.getString("name"));
+                label = convertResultSetToLabel(resultSet);
             }
-            System.out.println(label);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -60,7 +59,7 @@ public class LabelRepositoryImpl implements LabelRepository {
             preparedStatement.setString(1, label.getName());
             preparedStatement.executeUpdate();
 
-            System.out.println("Added new label named" + label.getName());
+            System.out.println("Added new label name" + label.getName());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -69,7 +68,7 @@ public class LabelRepositoryImpl implements LabelRepository {
 
     @Override
     public void deleteById(Long id) {
-        if (findById(id) != null) {
+        if (findById(id).getId() != null) {
             try (Connection connection = DataSource.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement
                          ("DELETE FROM posts_labels WHERE label_id=?; DELETE FROM labels WHERE label_id=?;")) {
@@ -106,16 +105,12 @@ public class LabelRepositoryImpl implements LabelRepository {
         }
     }
 
-    public List<Label> convertResultSetToLabels(ResultSet resultSet) throws SQLException {
-        List<Label> labels = new ArrayList<>();
+    public Label convertResultSetToLabel(ResultSet resultSet) throws SQLException {
+        Label label = new Label();
+        label.setId(resultSet.getLong("label_id"));
+        label.setName(resultSet.getString("name"));
 
-        while (resultSet.next()) {
-            Label label = new Label();
-            label.setId(resultSet.getLong("label_id"));
-            label.setName(resultSet.getString("name"));
-            labels.add(label);
-        }
-        return labels;
+        return label;
     }
 }
 
