@@ -2,6 +2,7 @@ package ua.com.okonsergei.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Writer {
 
@@ -72,7 +73,7 @@ public class Writer {
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", posts=" + posts +
+                ", posts=" + posts.stream().map(Post::getContent).collect(Collectors.toList()) +
                 '}';
     }
 }
