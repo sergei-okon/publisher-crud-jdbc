@@ -11,9 +11,14 @@ import java.util.stream.Collectors;
 
 public class WriterView extends BaseView {
 
-    private final WriterController writerController = new WriterController();
-    private final PostController postController = new PostController();
+    private final WriterController writerController;
+    private final PostController postController;
     private final Scanner scanner = new Scanner(System.in);
+
+    public WriterView(WriterController writerController, PostController postController) {
+        this.writerController = writerController;
+        this.postController = postController;
+    }
 
     @Override
     void create() {

@@ -1,16 +1,16 @@
 package ua.com.okonsergei.service;
 
-import ua.com.okonsergei.repository.LabelRepository;
-import ua.com.okonsergei.repository.db.LabelRepositoryImpl;
 import ua.com.okonsergei.model.Label;
+import ua.com.okonsergei.repository.LabelRepository;
 
 import java.util.List;
 
 public class LabelService {
 
-    private final LabelRepository labelRepository = new LabelRepositoryImpl();
+    private final LabelRepository labelRepository;
 
-    public LabelService() {
+    public LabelService(LabelRepository labelRepository) {
+        this.labelRepository = labelRepository;
     }
 
     public List<Label> findAll() {

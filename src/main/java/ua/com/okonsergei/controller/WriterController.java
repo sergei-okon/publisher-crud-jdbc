@@ -7,7 +7,11 @@ import java.util.List;
 
 public class WriterController {
 
-    WriterService writerService = new WriterService();
+    WriterService writerService;
+
+    public WriterController(WriterService writerService) {
+        this.writerService = writerService;
+    }
 
     public List<Writer> findAll() {
         return writerService.findAll();

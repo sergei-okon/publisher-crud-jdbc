@@ -8,8 +8,12 @@ import java.util.Scanner;
 
 public class LabelView extends BaseView {
 
-    private final LabelController labelController = new LabelController();
+    private final LabelController labelController;
     private final Scanner scanner = new Scanner(System.in);
+
+    public LabelView(LabelController labelController) {
+        this.labelController = labelController;
+    }
 
     @Override
     void create() {

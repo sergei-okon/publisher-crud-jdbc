@@ -2,13 +2,16 @@ package ua.com.okonsergei.service;
 
 import ua.com.okonsergei.model.Post;
 import ua.com.okonsergei.repository.PostRepository;
-import ua.com.okonsergei.repository.db.PostRepositoryImpl;
 
 import java.util.List;
 
 public class PostService {
 
-    private final PostRepository postRepository = new PostRepositoryImpl();
+    private final PostRepository postRepository;
+
+    public PostService(PostRepository postRepository) {
+        this.postRepository = postRepository;
+    }
 
     public List<Post> findAll() {
         return postRepository.findAll();

@@ -12,9 +12,14 @@ import java.util.stream.Collectors;
 
 public class PostView extends BaseView {
 
-    private final PostController postController = new PostController();
-    private final LabelController labelController = new LabelController();
+    private final PostController postController;
+    private final LabelController labelController;
     private final Scanner scanner = new Scanner(System.in);
+
+    public PostView(PostController postController, LabelController labelController) {
+        this.postController = postController;
+        this.labelController = labelController;
+    }
 
     @Override
     void create() {

@@ -7,7 +7,11 @@ import java.util.List;
 
 public class LabelController {
 
-    LabelService labelService = new LabelService();
+    LabelService labelService;
+
+    public LabelController(LabelService labelService) {
+        this.labelService = labelService;
+    }
 
     public List<Label> findAll() {
         return labelService.findAll();

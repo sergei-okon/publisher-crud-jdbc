@@ -7,7 +7,11 @@ import java.util.List;
 
 public class PostController {
 
-    PostService postService = new PostService();
+    PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
 
     public List<Post> findAll() {
         return postService.findAll();

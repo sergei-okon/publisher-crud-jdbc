@@ -6,14 +6,17 @@ import java.util.Scanner;
 
 public class MainView {
 
-    private final WriterView writerView = new WriterView();
-    private final LabelView labelView = new LabelView();
-    private final PostView postView = new PostView();
+    private final WriterView writerView;
+    private final LabelView labelView;
+    private final PostView postView;
+
+    public MainView(WriterView writerView, LabelView labelView, PostView postView) {
+        this.writerView = writerView;
+        this.labelView = labelView;
+        this.postView = postView;
+    }
 
     private final Scanner scanner = new Scanner(System.in);
-
-    public MainView() {
-    }
 
     public void run() {
         String mainMenu = """
