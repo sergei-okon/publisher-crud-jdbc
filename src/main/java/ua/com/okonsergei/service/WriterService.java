@@ -3,6 +3,7 @@ package ua.com.okonsergei.service;
 import ua.com.okonsergei.model.Writer;
 import ua.com.okonsergei.repository.WriterRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class WriterService {
@@ -29,7 +30,7 @@ public class WriterService {
         writerRepository.deleteById(id);
     }
 
-    public void update(Long id, Writer writer) {
-        writerRepository.update(id, writer);
+    public void update(Writer writer) {
+        writerRepository.update(writer);
     }
 }

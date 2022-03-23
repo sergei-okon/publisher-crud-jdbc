@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.okonsergei.model.Post;
 import ua.com.okonsergei.repository.PostRepository;
-import ua.com.okonsergei.repository.db.PostRepositoryImpl;
+import ua.com.okonsergei.repository.jdbc.JdbcPostRepositoryImpl;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -16,7 +16,7 @@ class PostServiceTest {
 
     @BeforeEach
     void setUp() {
-        postRepositoryMock = mock(PostRepositoryImpl.class);
+        postRepositoryMock = mock(JdbcPostRepositoryImpl.class);
         postService = new PostService(postRepositoryMock);
     }
 
@@ -54,7 +54,7 @@ class PostServiceTest {
         Long id = 5L;
         Post post = new Post();
 
-        postService.update(id, post);
-        verify(postRepositoryMock).update(id, post);
+        postService.update(post);
+        verify(postRepositoryMock).update(post);
     }
 }

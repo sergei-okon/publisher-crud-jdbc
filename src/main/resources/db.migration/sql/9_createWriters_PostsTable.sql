@@ -6,17 +6,11 @@ CREATE TABLE IF NOT EXISTS public.writers_posts
     CONSTRAINT writers_posts_pkey PRIMARY KEY (id),
     CONSTRAINT post_id FOREIGN KEY (post_id)
         REFERENCES public.posts (post_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-        NOT VALID,
-    CONSTRAINT writer_id FOREIGN KEY (writer_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+       CONSTRAINT writer_id FOREIGN KEY (writer_id)
         REFERENCES public.writers (writer_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-        NOT VALID
-)
-
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+      )
     TABLESPACE pg_default;
-
---ALTER TABLE IF EXISTS public.writers_posts
- --   OWNER to postgres;

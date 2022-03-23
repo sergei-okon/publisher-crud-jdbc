@@ -30,6 +30,6 @@ public class LabelController {
     }
 
     public void update(Long id, Label label) {
-        labelService.update(id, label);
+        labelService.update(label);
     }
 }

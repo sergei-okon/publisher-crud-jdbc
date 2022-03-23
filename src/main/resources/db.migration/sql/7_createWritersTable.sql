@@ -5,8 +5,4 @@ CREATE TABLE IF NOT EXISTS public.writers
     last_name character varying(100) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT writers_pkey PRIMARY KEY (writer_id)
 )
-
     TABLESPACE pg_default;
-
---ALTER TABLE IF EXISTS public.writers
- --   OWNER to postgres;

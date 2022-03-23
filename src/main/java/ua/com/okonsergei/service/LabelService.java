@@ -3,6 +3,7 @@ package ua.com.okonsergei.service;
 import ua.com.okonsergei.model.Label;
 import ua.com.okonsergei.repository.LabelRepository;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class LabelService {
@@ -29,7 +30,7 @@ public class LabelService {
         labelRepository.deleteById(id);
     }
 
-    public void update(Long id, Label label) {
-        labelRepository.update(id, label);
+    public void update(Label label) {
+        labelRepository.update(label);
     }
 }

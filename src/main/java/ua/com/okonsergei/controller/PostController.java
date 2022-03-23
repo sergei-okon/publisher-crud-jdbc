@@ -29,8 +29,8 @@ public class PostController {
         postService.deleteById(id);
     }
 
-    public void update(Long id, Post post) {
-        postService.update(id, post);
+    public void update(Post post) {
+        postService.update(post);
     }
 }
 

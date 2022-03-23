@@ -7,6 +7,3 @@ CREATE TABLE IF NOT EXISTS public.posts
     CONSTRAINT posts_pkey PRIMARY KEY (post_id)
 )
     TABLESPACE pg_default;
-
---ALTER TABLE IF EXISTS public.posts
- --   OWNER to postgres;

@@ -59,12 +59,12 @@ public class Writer {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Writer writer = (Writer) o;
-        return id.equals(writer.id) && firstName.equals(writer.firstName) && lastName.equals(writer.lastName) && Objects.equals(posts, writer.posts);
+        return id.equals(writer.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, posts);
+        return Objects.hash(id);
     }
 
     @Override

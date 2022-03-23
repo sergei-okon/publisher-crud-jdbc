@@ -30,7 +30,7 @@ public class WriterController {
     }
 
     public void update(Long id, Writer writer) {
-        writerService.update(id, writer);
+        writerService.update(writer);
     }
 }
 

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ua.com.okonsergei.model.Label;
 import ua.com.okonsergei.repository.LabelRepository;
-import ua.com.okonsergei.repository.db.LabelRepositoryImpl;
+import ua.com.okonsergei.repository.jdbc.JdbcLabelRepositoryImpl;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -17,7 +17,7 @@ class LabelServiceTest {
 
     @BeforeEach
     void setUp() {
-        labelRepositoryMock = mock(LabelRepositoryImpl.class);
+        labelRepositoryMock = mock(JdbcLabelRepositoryImpl.class);
         labelService = new LabelService(labelRepositoryMock);
     }
 
@@ -52,10 +52,9 @@ class LabelServiceTest {
 
     @Test
     void update_Success() {
-        Long id = 5L;
         Label label = new Label();
 
-        labelService.update(id, label);
-        verify(labelRepositoryMock).update(id, label);
+        labelService.update(label);
+        verify(labelRepositoryMock).update(label);
     }
 }

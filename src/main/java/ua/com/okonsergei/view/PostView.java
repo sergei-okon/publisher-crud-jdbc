@@ -88,7 +88,7 @@ public class PostView extends BaseView {
         updatePost.setUpdated(LocalDateTime.now());
         updatePost.setLabels(labels);
 
-        postController.update(id, updatePost);
+        postController.update(updatePost);
         System.out.println(Message.SUCCESSFUL_OPERATION.getMessage());
     }
 
